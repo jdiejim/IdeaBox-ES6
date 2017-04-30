@@ -113,4 +113,92 @@ body {
   #submit:focus {
     outline: none; }
 
+main {
+  height: 100%; }
+
+#card-container {
+  height: 100%;
+  padding: 10px; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23); }
+  .card button:hover {
+    outline: none; }
+
+.primary-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%; }
+
+.card-text {
+  width: 80%;
+  padding-left: 10px; }
+
+.card-title {
+  margin: 10px 0 5px;
+  color: #212121; }
+
+.card-body {
+  margin: 0 0 20px;
+  color: #757575; }
+
+.complete {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 3px solid #BDBDBD; }
+
+.completed {
+  background-color: #FF5722; }
+
+.delete {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background: url(../assets/delete.svg) no-repeat center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%; }
+  .delete:hover {
+    background: url(../assets/hover-delete.svg) no-repeat center;
+    background-size: contain; }
+
+.rating {
+  display: flex;
+  align-items: center; }
+
+.quality {
+  margin: 5px;
+  font-size: 12px; }
+  .quality span {
+    font-size: 16px; }
+
+.upvote,
+.downvote {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  background: url(../assets/up.svg) no-repeat center;
+  background-size: contain;
+  border: none;
+  border-radius: 50%; }
+  .upvote:hover,
+  .downvote:hover {
+    background: url(../assets/hover-up.svg) no-repeat center;
+    background-size: contain; }
+
+.downvote {
+  background: url(../assets/down.svg) no-repeat center;
+  background-size: contain; }
+  .downvote:hover {
+    background: url(../assets/hover-down.svg) no-repeat center;
+    background-size: contain; }
+
 /*# sourceMappingURL=style.css.map */

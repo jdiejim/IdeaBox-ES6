@@ -73,5 +73,22 @@
 "use strict";
 
 
+function getInputs() {
+  return {
+    title: document.getElementById('input-title').value,
+    body: document.getElementById('input-body').value,
+    id: Date.now()
+  };
+}
+
+function buildCard(obj) {
+  return '\n  <article id=' + obj.id + ' class="card">\n    <section class="primary-info">\n      <button class="complete" type="button" name="complete"></button>\n      <section class="card-text">\n        <h2 class="card-title">' + obj.title + '</h2>\n        <p class="card-body">Enter ' + obj.body + '</p>\n      </section>\n      <button class="delete" type="button" name="button"></button>\n    </section>\n    <section class="rating">\n      <button class="upvote" type="button" name="button"></button>\n      <button class="downvote" type="button" name="button"></button>\n      <p class="quality">quality: <span>Swill</span></p>\n    </section>\n  </article>\n  ';
+}
+
+document.getElementById('submit').addEventListener('click', function (e) {
+  e.preventDefault();
+  document.getElementById('card-container').innerHTML += buildCard(getInputs());
+});
+
 /***/ })
 /******/ ]);
