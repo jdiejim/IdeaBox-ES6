@@ -1,4 +1,13 @@
-h1 {
-  color: red; }
+* {
+  box-sizing: border-box; }
+
+html {
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: "Avenir Next", sans-serif;
+  color: #0097A7; }
 
 /*# sourceMappingURL=style.css.map */
