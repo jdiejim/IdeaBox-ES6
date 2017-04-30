@@ -77,18 +77,43 @@ function getInputs() {
   return {
     title: document.getElementById('input-title').value,
     body: document.getElementById('input-body').value,
-    id: Date.now()
+    id: Date.now(),
+    quality: 'Swill'
   };
 }
 
-function buildCard(obj) {
-  return '\n  <article id=' + obj.id + ' class="card">\n    <section class="primary-info">\n      <button class="complete" type="button" name="complete"></button>\n      <section class="card-text">\n        <h2 class="card-title">' + obj.title + '</h2>\n        <p class="card-body">Enter ' + obj.body + '</p>\n      </section>\n      <button class="delete" type="button" name="button"></button>\n    </section>\n    <section class="rating">\n      <button class="upvote" type="button" name="button"></button>\n      <button class="downvote" type="button" name="button"></button>\n      <p class="quality">quality: <span>Swill</span></p>\n    </section>\n  </article>\n  ';
+function clearInputs() {
+  document.getElementById('input-title').value = '';
+  document.getElementById('input-body').value = '';
+  console.log('ari');
 }
 
-document.getElementById('submit').addEventListener('click', function (e) {
+function renderCardPrimaryInfo(obj) {
+  return '\n  <section class="primary-info">\n\n    <section class="card-text">\n      <h2 class="card-title">' + obj.title + '</h2>\n      <p class="card-body">' + obj.body + '</p>\n    </section>\n\n  </section>\n  ';
+}
+
+function renderCardQuality(obj) {
+  return '\n  <section class="rating">\n    <button class="upvote" type="button" name="button"></button>\n    <button class="downvote" type="button" name="button"></button>\n    <p class="quality">quality: <span>' + obj.quality + '</span></p>\n  </section>\n  ';
+}
+
+function buildCard(obj) {
+  return '\n  <article id=' + obj.id + ' class="card">\n    <button class="complete" type="button" name="complete"></button>\n    <main>\n      ' + renderCardPrimaryInfo(obj) + '\n      ' + renderCardQuality(obj) + '\n    </main>\n    <button class="delete" type="button" name="button"></button>\n  </article>\n  ';
+}
+
+function saveIdea(e) {
   e.preventDefault();
   document.getElementById('card-container').innerHTML += buildCard(getInputs());
+  clearInputs();
+}
+
+document.getElementById('card-container').innerHTML += buildCard({
+  title: 'Enter Title',
+  body: 'Enter description',
+  id: Date.now(),
+  quality: 'Swill'
 });
+
+document.getElementById('submit').addEventListener('click', saveIdea);
 
 /***/ })
 /******/ ]);

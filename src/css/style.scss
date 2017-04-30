@@ -114,12 +114,36 @@ body {
 #input-title {
   color: $primary-color-text;
   font-size: 36px;
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $primary-color-text;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $primary-color-text;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $primary-color-text;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $primary-color-text;
+  }
 }
 
 #input-body {
   color: $primary-color-light;
   font-size: 16px;
   resize: none;
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $primary-color-light;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $primary-color-light;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $primary-color-light;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $primary-color-light;
+  }
 }
 
 #submit {
@@ -155,25 +179,26 @@ main {
 
 .card {
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  align-items: center;
   padding-bottom: 10px;
   margin-bottom: 15px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
   & button:hover {
     outline: none;
   }
+  main {
+    width: 90%;
+    padding-left: 10px;
+  }
 }
 
 .primary-info {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
 }
 
 .card-text {
   width: 80%;
-  padding-left: 10px;
 }
 
 .card-title {
@@ -189,7 +214,7 @@ main {
 .complete {
   width: 20px;
   height: 20px;
-  margin-left: 5px;
+  margin-left: 10px;
   background-color: transparent;
   border-radius: 50%;
   border: 3px solid $divider-color;
@@ -200,11 +225,11 @@ main {
 }
 
 .delete {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+  width: 23px;
+  height: 23px;
+  margin-right: 10px;
   background: url(../assets/delete.svg) no-repeat center;
-  background-size: contain;
+  background-size: 100%;
   border: none;
   border-radius: 50%;
   &:hover {
@@ -230,7 +255,7 @@ main {
 .downvote {
   width: 20px;
   height: 20px;
-  margin: 0 10px;
+  margin: 0 10px 0 0;
   background: url(../assets/up.svg) no-repeat center;
   background-size: contain;
   border: none;
