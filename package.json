@@ -1,0 +1,39 @@
+{
+  "name": "ideabox-es6",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
+  },
+  "scripts": {
+    "start": "npm run webpack & npm run sass",
+    "webpack": "webpack --watch",
+    "sass": "sass --watch ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdiejim/IdeaBox-ES6.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdiejim/IdeaBox-ES6/issues"
+  },
+  "homepage": "https://github.com/jdiejim/IdeaBox-ES6#readme",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^2.4.1"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0"
+  }
+}
