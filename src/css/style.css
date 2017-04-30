@@ -7,7 +7,110 @@ html {
 body {
   width: 100%;
   height: 100%;
-  font-family: "Avenir Next", sans-serif;
-  color: #0097A7; }
+  margin: 0;
+  font-family: "Avenir Next", sans-serif; }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: #0097A7; }
+
+.header-tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  color: #FFFFFF; }
+
+.logo {
+  padding: 10px 0 5px;
+  margin: 0 auto;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-align: center; }
+
+.search {
+  margin-right: 20px;
+  background: url(../assets/search.svg) no-repeat center;
+  background-size: contain;
+  border: none;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s; }
+  .search:hover {
+    transform: scale(1.2); }
+  .search:focus {
+    outline: none; }
+
+.empty {
+  margin-left: 20px;
+  border: none;
+  width: 16px;
+  height: 16px; }
+  .empty:focus {
+    outline: none; }
+
+.search-input {
+  display: none;
+  width: 95%;
+  padding: 10px 20px;
+  margin: 0 auto 5px;
+  background-color: transparent;
+  border: 1px solid #FFFFFF;
+  border-radius: 20px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 300; }
+  .search-input:focus {
+    outline: none; }
+
+.active {
+  display: block; }
+
+.input-form {
+  display: flex;
+  padding: 10px 0 0;
+  background-color: #00BCD4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
+  .input-form input, .input-form textarea {
+    display: block;
+    width: 260px;
+    margin: 0 auto;
+    background-color: transparent;
+    border: none;
+    font-weight: 300; }
+    .input-form input:focus, .input-form textarea:focus {
+      outline: none; }
+
+.input-wrapper {
+  border: none; }
+
+#input-title {
+  color: #FFFFFF;
+  font-size: 36px; }
+
+#input-body {
+  color: #B2EBF2;
+  font-size: 16px;
+  resize: none; }
+
+#submit {
+  display: block;
+  align-self: flex-end;
+  position: relative;
+  top: 30px;
+  width: 60px;
+  height: 60px;
+  background: url(../assets/add.svg) no-repeat #FF5722 center;
+  background-size: 50%;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.23);
+  transition: transform 0.2s; }
+  #submit:hover {
+    transform: scale(1.1); }
+  #submit:focus {
+    outline: none; }
 
 /*# sourceMappingURL=style.css.map */

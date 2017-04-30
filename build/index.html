@@ -8,9 +8,23 @@
     <link rel="stylesheet" href="../src/css/style.css">
   </head>
   <body>
-    <header>
-      <h1>hello</h1>
+    <header role="header" class="header">
+      <div class="header-tags">
+        <div class="empty"></div>
+        <h1 class="logo">ideaBox</h1>
+        <button class="search" type="button" name="search"></button>
+      </div>
+      <input class="search-input" type="search" name="" value="Search Idea">
     </header>
+    <main role="main">
+      <form class="input-form">
+        <fieldset class="input-wrapper">
+          <input id="input-title" type="text" name="title" value="Enter Title" placeholder="Enter Title">
+          <textarea id="input-body" name="body" rows="2" cols="80" value="">Enter Body</textarea>
+        </fieldset>
+        <button id="submit" type="button" name="submit"></button>
+      </form>
+    </main>
     <script src="app.bundle.js"></script>
   </body>
 </html>
