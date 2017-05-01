@@ -1,0 +1,21 @@
+@keyframes addCard {
+  from {
+    opacity: 0;
+    transform: translateY(-140px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes removeCard {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+}

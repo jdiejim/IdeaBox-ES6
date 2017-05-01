@@ -85,35 +85,51 @@ function getInputs() {
 function clearInputs() {
   document.getElementById('input-title').value = '';
   document.getElementById('input-body').value = '';
-  console.log('ari');
 }
 
 function renderCardPrimaryInfo(obj) {
-  return '\n  <section class="primary-info">\n\n    <section class="card-text">\n      <h2 class="card-title">' + obj.title + '</h2>\n      <p class="card-body">' + obj.body + '</p>\n    </section>\n\n  </section>\n  ';
+  return '\n  <section class="primary-info">\n    <section class="card-text">\n      <h2 class="card-title">' + obj.title + '</h2>\n      <p class="card-body">' + obj.body + '</p>\n    </section>\n  </section>\n  ';
 }
 
 function renderCardQuality(obj) {
-  return '\n  <section class="rating">\n    <button class="upvote" type="button" name="button"></button>\n    <button class="downvote" type="button" name="button"></button>\n    <p class="quality">quality: <span>' + obj.quality + '</span></p>\n  </section>\n  ';
+  return '\n  <section class="rating">\n    <button class="upvote" type="button" name="upvote"></button>\n    <button class="downvote" type="button" name="downvote"></button>\n    <p class="quality">quality: <span>' + obj.quality + '</span></p>\n  </section>\n  ';
 }
 
 function buildCard(obj) {
-  return '\n  <article id=' + obj.id + ' class="card">\n    <button class="complete" type="button" name="complete"></button>\n    <main>\n      ' + renderCardPrimaryInfo(obj) + '\n      ' + renderCardQuality(obj) + '\n    </main>\n    <button class="delete" type="button" name="button"></button>\n  </article>\n  ';
+  return '\n  <article id=' + obj.id + ' class="card new">\n    <button class="complete" type="button" name="complete"></button>\n    <main>\n      ' + renderCardPrimaryInfo(obj) + '\n      ' + renderCardQuality(obj) + '\n    </main>\n    <button class="delete" type="button" name="delete"></button>\n  </article>\n  ';
+}
+
+function addNewItemClass() {
+  document.getElementById('card-container').querySelector('article').className = 'card cardVisible';
+}
+
+function prepend(element) {
+  document.getElementById('card-container').innerHTML = element + document.getElementById('card-container').innerHTML;
 }
 
 function saveIdea(e) {
   e.preventDefault();
-  document.getElementById('card-container').innerHTML += buildCard(getInputs());
+  prepend(buildCard(getInputs()));
   clearInputs();
+  setTimeout(function () {
+    return addNewItemClass();
+  }, 500);
 }
 
-document.getElementById('card-container').innerHTML += buildCard({
-  title: 'Enter Title',
-  body: 'Enter description',
-  id: Date.now(),
-  quality: 'Swill'
-});
+function addRemovedClass(e) {
+  e.target.parentElement.className = 'card removed';
+}
+
+function removeIdea(e) {
+  var _this = this;
+
+  return e.target.className !== 'delete' || addRemovedClass(e) || setTimeout(function () {
+    return _this.removeChild(e.target.parentElement);
+  }, 500);
+}
 
 document.getElementById('submit').addEventListener('click', saveIdea);
+document.getElementById('card-container').addEventListener('click', removeIdea);
 
 /***/ })
 /******/ ]);

@@ -10,18 +10,15 @@ function getInputs() {
 function clearInputs() {
   document.getElementById('input-title').value = '';
   document.getElementById('input-body').value = '';
-  console.log('ari');
 }
 
 function renderCardPrimaryInfo(obj) {
   return `
   <section class="primary-info">
-
     <section class="card-text">
       <h2 class="card-title">${obj.title}</h2>
       <p class="card-body">${obj.body}</p>
     </section>
-
   </section>
   `;
 }
@@ -29,8 +26,8 @@ function renderCardPrimaryInfo(obj) {
 function renderCardQuality(obj) {
   return `
   <section class="rating">
-    <button class="upvote" type="button" name="button"></button>
-    <button class="downvote" type="button" name="button"></button>
+    <button class="upvote" type="button" name="upvote"></button>
+    <button class="downvote" type="button" name="downvote"></button>
     <p class="quality">quality: <span>${obj.quality}</span></p>
   </section>
   `;
@@ -38,28 +35,41 @@ function renderCardQuality(obj) {
 
 function buildCard(obj) {
   return `
-  <article id=${obj.id} class="card">
+  <article id=${obj.id} class="card new">
     <button class="complete" type="button" name="complete"></button>
     <main>
       ${renderCardPrimaryInfo(obj)}
       ${renderCardQuality(obj)}
     </main>
-    <button class="delete" type="button" name="button"></button>
+    <button class="delete" type="button" name="delete"></button>
   </article>
   `;
 }
 
-function saveIdea(e) {
-  e.preventDefault();
-  document.getElementById('card-container').innerHTML += buildCard(getInputs());
-  clearInputs();
+function addNewItemClass() {
+  document.getElementById('card-container').querySelector('article').className = 'card cardVisible';
 }
 
-document.getElementById('card-container').innerHTML += buildCard({
-  title: 'Enter Title',
-  body: 'Enter description',
-  id: Date.now(),
-  quality: 'Swill',
-});
+function prepend(element) {
+  document.getElementById('card-container').innerHTML = element + document.getElementById('card-container').innerHTML;
+}
+
+function saveIdea(e) {
+  e.preventDefault();
+  prepend(buildCard(getInputs()));
+  clearInputs();
+  setTimeout(() => addNewItemClass(), 500);
+}
+
+function addRemovedClass(e) {
+  e.target.parentElement.className = 'card removed';
+}
+
+function removeIdea(e) {
+  return e.target.className !== 'delete'
+         || addRemovedClass(e)
+         || setTimeout(() => this.removeChild(e.target.parentElement), 500);
+}
 
 document.getElementById('submit').addEventListener('click', saveIdea);
+document.getElementById('card-container').addEventListener('click', removeIdea);

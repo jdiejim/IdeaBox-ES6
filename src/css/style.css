@@ -1,3 +1,17 @@
+@keyframes addCard {
+  from {
+    opacity: 0;
+    transform: translateY(-140px); }
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+@keyframes removeCard {
+  from {
+    opacity: 1;
+    transform: translateY(0); }
+  to {
+    opacity: 0;
+    transform: translateY(80px); } }
 * {
   box-sizing: border-box; }
 
@@ -146,6 +160,7 @@ main {
 
 .card {
   display: flex;
+  opacity: 0;
   align-items: center;
   padding-bottom: 10px;
   margin-bottom: 15px;
@@ -156,8 +171,14 @@ main {
     width: 90%;
     padding-left: 10px; }
 
-.primary-info {
-  display: flex; }
+.cardVisible {
+  opacity: 1; }
+
+.new {
+  animation: addCard 0.5s linear forwards; }
+
+.removed {
+  animation: removeCard 0.5s linear forwards; }
 
 .card-text {
   width: 80%; }
