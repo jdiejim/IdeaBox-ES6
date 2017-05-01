@@ -1,3 +1,24 @@
+function getIdeas() {
+  if (localStorage.ideas) {
+    const ideas = JSON.parse(localStorage.getItem('ideas'));
+    let html = '';
+    for (let i in ideas) {
+      html = buildCard(ideas[i]) + html;
+    }
+    prepend(html);
+  } else {
+    localStorage.setItem('ideas', JSON.stringify({}));
+  }
+}
+
+function storeIdea(newIdea) {
+  const ideas = JSON.parse(localStorage.getItem('ideas'));
+  ideas[newIdea.id] = newIdea;
+  localStorage.setItem('ideas', JSON.stringify(ideas));
+}
+
+getIdeas();
+
 function getInputs() {
   return {
     title: document.getElementById('input-title').value,
@@ -55,8 +76,10 @@ function prepend(element) {
 }
 
 function saveIdea(e) {
+  const newCard = getInputs();
   e.preventDefault();
-  prepend(buildCard(getInputs()));
+  prepend(buildCard(newCard));
+  storeIdea(newCard);
   clearInputs();
   setTimeout(() => addNewItemClass(), 500);
 }
@@ -66,6 +89,9 @@ function addRemovedClass(e) {
 }
 
 function removeIdea(e) {
+  const ideas = JSON.parse(localStorage.getItem('ideas'));
+  delete ideas[e.target.parentElement.id];
+  localStorage.setItem('ideas', JSON.stringify(ideas));
   return e.target.className !== 'delete'
          || addRemovedClass(e)
          || setTimeout(() => this.removeChild(e.target.parentElement), 500);

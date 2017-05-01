@@ -63,15 +63,48 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = { "default": __webpack_require__(2), __esModule: true };
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
+
+var _stringify = __webpack_require__(0);
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getIdeas() {
+  if (localStorage.ideas) {
+    var ideas = JSON.parse(localStorage.getItem('ideas'));
+    var html = '';
+    for (var i in ideas) {
+      html = buildCard(ideas[i]) + html;
+    }
+    prepend(html);
+  } else {
+    localStorage.setItem('ideas', (0, _stringify2.default)({}));
+  }
+}
+
+function storeIdea(newIdea) {
+  var ideas = JSON.parse(localStorage.getItem('ideas'));
+  ideas[newIdea.id] = newIdea;
+  localStorage.setItem('ideas', (0, _stringify2.default)(ideas));
+}
+
+getIdeas();
 
 function getInputs() {
   return {
@@ -108,8 +141,10 @@ function prepend(element) {
 }
 
 function saveIdea(e) {
+  var newCard = getInputs();
   e.preventDefault();
-  prepend(buildCard(getInputs()));
+  prepend(buildCard(newCard));
+  storeIdea(newCard);
   clearInputs();
   setTimeout(function () {
     return addNewItemClass();
@@ -123,6 +158,9 @@ function addRemovedClass(e) {
 function removeIdea(e) {
   var _this = this;
 
+  var ideas = JSON.parse(localStorage.getItem('ideas'));
+  delete ideas[e.target.parentElement.id];
+  localStorage.setItem('ideas', (0, _stringify2.default)(ideas));
   return e.target.className !== 'delete' || addRemovedClass(e) || setTimeout(function () {
     return _this.removeChild(e.target.parentElement);
   }, 500);
@@ -130,6 +168,23 @@ function removeIdea(e) {
 
 document.getElementById('submit').addEventListener('click', saveIdea);
 document.getElementById('card-container').addEventListener('click', removeIdea);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var core  = __webpack_require__(3)
+  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+  return $JSON.stringify.apply($JSON, arguments);
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var core = module.exports = {version: '2.4.0'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ })
 /******/ ]);
